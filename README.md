@@ -16,6 +16,17 @@ documentación requerida y por último firma electrónica.
 captadas, el seguimiento de estas. Un panel de estadísticas para visualizar la cantidad de
 matriculas captadas.
 
+## Librerías instaladas
+- React router dom
+- Zustand
+- React Query
+- Axios
+- Tailwind CSS
+- React Icons
+- React Hook Form
+- Joi
+- Biome
+
 ## Estructura del proyecto
 ```
 src/

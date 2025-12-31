@@ -1,7 +1,11 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { PATHS } from '@/shared/types'
+import {
+  LoginPage,
+  RegisterPage,
+  TermsAndConditionsPage,
+} from '@/components/pages'
 import { AuthLayout } from '@/components/templates'
-import { LoginPage, RegisterPage } from '@/components/pages'
+import { PATHS } from '@/shared/types'
 
 const AppRoutes = () => {
   return (
@@ -11,6 +15,10 @@ const AppRoutes = () => {
           <Route index element={<LoginPage />} />
           <Route path={PATHS.REGISTER} element={<RegisterPage />} />
         </Route>
+        <Route
+          path={PATHS.TERMS_AND_CONDITIONS}
+          element={<TermsAndConditionsPage />}
+        />
         <Route path="*" element={<Navigate to={PATHS.AUTH} replace />} />
       </Routes>
     </BrowserRouter>

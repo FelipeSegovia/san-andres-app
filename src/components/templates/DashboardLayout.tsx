@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom'
 
 export const DashboardLayout = () => {
   return (
@@ -6,5 +6,5 @@ export const DashboardLayout = () => {
       <h1>DashboardLayout</h1>
       <Outlet />
     </div>
-  );
-};
+  )
+}

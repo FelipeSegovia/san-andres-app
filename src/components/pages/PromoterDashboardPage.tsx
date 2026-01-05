@@ -1,4 +1,3 @@
 export const PromoterDashboardPage = () => {
-  return <div>PromoterDashboardPage</div>;
-};
-
+  return <div>PromoterDashboardPage</div>
+}

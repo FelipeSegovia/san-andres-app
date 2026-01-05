@@ -1,4 +1,8 @@
-import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from 'axios'
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  InternalAxiosRequestConfig,
+} from 'axios'
 import type { ApiResponse, ApiError } from '@/shared/types/api.types'
 
 // Re-exportar tipos para compatibilidad
@@ -24,7 +28,7 @@ apiClient.interceptors.request.use(
   },
   (error: AxiosError) => {
     return Promise.reject(error)
-  }
+  },
 )
 
 // Interceptor para responses - manejo de errores centralizado
@@ -44,7 +48,10 @@ apiClient.interceptors.response.use(
 
       // Error del servidor
       if (status >= 500) {
-        console.error('Error del servidor:', data?.message || 'Error interno del servidor')
+        console.error(
+          'Error del servidor:',
+          data?.message || 'Error interno del servidor',
+        )
       }
     } else if (error.request) {
       // Error de red
@@ -55,8 +62,7 @@ apiClient.interceptors.response.use(
     }
 
     return Promise.reject(error)
-  }
+  },
 )
 
 export default apiClient
-

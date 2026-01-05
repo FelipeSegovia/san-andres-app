@@ -1,20 +1,20 @@
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { PATHS } from "@/shared/types/paths.types";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
+import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
+import { PATHS } from '@/shared/types/paths.types'
+import { Button } from '../ui/button'
+import { Input } from '../ui/input'
+import { Label } from '../ui/label'
 
 interface RegisterFormData {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
+  name: string
+  email: string
+  password: string
+  confirmPassword: string
 }
 
 interface RegisterFormProps {
-  onSubmit: (data: RegisterFormData) => void;
-  error?: string | null;
+  onSubmit: (data: RegisterFormData) => void
+  error?: string | null
 }
 
 export const RegisterForm: React.FC<RegisterFormProps> = ({
@@ -26,7 +26,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
     handleSubmit,
     watch,
     formState: { errors, isSubmitting },
-  } = useForm<RegisterFormData>();
+  } = useForm<RegisterFormData>()
 
   return (
     <form className="p-6 md:p-8" onSubmit={handleSubmit(onSubmit)}>
@@ -46,11 +46,11 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
             id="name"
             type="text"
             placeholder="John Doe"
-            {...register("name", {
-              required: "El nombre es requerido",
+            {...register('name', {
+              required: 'El nombre es requerido',
               minLength: {
                 value: 2,
-                message: "El nombre debe tener al menos 2 caracteres",
+                message: 'El nombre debe tener al menos 2 caracteres',
               },
             })}
           />
@@ -64,11 +64,11 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
             id="email"
             type="email"
             placeholder="m@example.com"
-            {...register("email", {
-              required: "El correo electrónico es requerido",
+            {...register('email', {
+              required: 'El correo electrónico es requerido',
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "Correo electrónico inválido",
+                message: 'Correo electrónico inválido',
               },
             })}
           />
@@ -83,11 +83,11 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
           <Input
             id="password"
             type="password"
-            {...register("password", {
-              required: "La contraseña es requerida",
+            {...register('password', {
+              required: 'La contraseña es requerida',
               minLength: {
                 value: 6,
-                message: "La contraseña debe tener al menos 6 caracteres",
+                message: 'La contraseña debe tener al menos 6 caracteres',
               },
             })}
           />
@@ -100,10 +100,10 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
           <Input
             id="confirmPassword"
             type="password"
-            {...register("confirmPassword", {
-              required: "Por favor confirma tu contraseña",
+            {...register('confirmPassword', {
+              required: 'Por favor confirma tu contraseña',
               validate: (value) =>
-                value === watch("password") || "Las contraseñas no coinciden",
+                value === watch('password') || 'Las contraseñas no coinciden',
             })}
           />
           {errors.confirmPassword && (
@@ -113,15 +113,15 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
           )}
         </div>
         <Button type="submit" className="w-full" disabled={isSubmitting}>
-          {isSubmitting ? "Registrando..." : "Registrarse"}
+          {isSubmitting ? 'Registrando...' : 'Registrarse'}
         </Button>
         <div className="text-center text-sm">
-          Ya tienes una cuenta?{" "}
+          Ya tienes una cuenta?{' '}
           <Link to={PATHS.AUTH} className="underline underline-offset-4">
             Iniciar sesión
           </Link>
         </div>
       </div>
     </form>
-  );
-};
+  )
+}

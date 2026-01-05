@@ -1,18 +1,18 @@
-import { Label } from "@radix-ui/react-label";
-import { Loader2 } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { Label } from '@radix-ui/react-label'
+import { Loader2 } from 'lucide-react'
+import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
+import { Button } from '../ui/button'
+import { Input } from '../ui/input'
 
 interface LoginFormData {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
 interface LoginFormProps {
-  onSubmit: (data: LoginFormData) => void;
-  error?: string | null;
+  onSubmit: (data: LoginFormData) => void
+  error?: string | null
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
@@ -20,7 +20,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<LoginFormData>();
+  } = useForm<LoginFormData>()
 
   return (
     <form className="p-6 md:p-8" onSubmit={handleSubmit(onSubmit)}>
@@ -40,11 +40,11 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
             id="email"
             type="email"
             placeholder="m@example.com"
-            {...register("email", {
-              required: "El correo electrónico es requerido",
+            {...register('email', {
+              required: 'El correo electrónico es requerido',
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "Correo electrónico inválido",
+                message: 'Correo electrónico inválido',
               },
             })}
           />
@@ -56,7 +56,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
           <div className="flex items-center">
             <Label htmlFor="password">Contraseña</Label>
             <Link
-              to={"/"}
+              to={'/'}
               className="ml-auto text-sm underline-offset-2 hover:underline"
             >
               Olvidaste tu contraseña?
@@ -65,11 +65,11 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
           <Input
             id="password"
             type="password"
-            {...register("password", {
-              required: "La contraseña es requerida",
+            {...register('password', {
+              required: 'La contraseña es requerida',
               minLength: {
                 value: 6,
-                message: "La contraseña debe tener al menos 6 caracteres",
+                message: 'La contraseña debe tener al menos 6 caracteres',
               },
             })}
           />
@@ -81,7 +81,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
           {isSubmitting ? (
             <Loader2 className="h-5 w-5 animate-spin" />
           ) : (
-            "Iniciar"
+            'Iniciar'
           )}
         </Button>
         <div className="text-center text-sm">
@@ -95,5 +95,5 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
         </div>
       </div>
     </form>
-  );
-};
+  )
+}

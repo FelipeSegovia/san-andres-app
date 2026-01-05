@@ -1,3 +1,3 @@
 export const ParentDashboardPage = () => {
-  return <div>ParentDashboardPage</div>;
-};
+  return <div>ParentDashboardPage</div>
+}

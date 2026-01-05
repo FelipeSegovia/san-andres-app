@@ -44,4 +44,3 @@ export const useErrorMessage = (error: unknown): string | null => {
   // Mensaje por defecto
   return 'Ocurrió un error inesperado. Por favor, intenta nuevamente.'
 }
-

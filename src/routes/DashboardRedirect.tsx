@@ -1,5 +1,5 @@
-import { Navigate } from "react-router-dom";
-import { PATHS } from "@/shared/types";
+import { Navigate } from 'react-router-dom'
+import { PATHS } from '@/shared/types'
 
 /**
  * Componente que redirige desde /dashboard a la ruta correcta según el rol del usuario
@@ -25,5 +25,5 @@ export const DashboardRedirect = () => {
   //   : userRole === 'promoter' ? PATHS.DASHBOARD_PROMOTER
   //   : PATHS.DASHBOARD_PARENT;
 
-  return <Navigate to={PATHS.DASHBOARD_PARENT} replace />;
-};
+  return <Navigate to={PATHS.DASHBOARD_PARENT} replace />
+}

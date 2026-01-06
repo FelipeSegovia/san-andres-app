@@ -3,33 +3,31 @@ import PlaceholderImg from '@/assets/placeholder.svg'
 import { Card, CardContent } from '@/components/ui/card.tsx'
 import { cn } from '@/lib/utils.ts'
 import { LoginForm } from '../organisms'
-
-interface LoginFormData {
-  email: string
-  password: string
-}
+import { useLogin } from '@/features/auth/hooks'
+import { useErrorMessage } from '@/shared/hooks/use-error-message'
+import type { LoginRequest } from '@/shared/types'
 
 export const LoginPage: FC<ComponentProps<'div'>> = ({
   className,
   ...props
 }) => {
-  const onGoogleLogin = () => {
-    console.log('Login on google')
+  const loginMutation = useLogin()
+
+  const handleSubmitLoginForm = async (data: LoginRequest) => {
+    await loginMutation.mutateAsync(data).catch((error) => {
+      console.error(error)
+    })
+    // La navegación se maneja en el hook useLogin
   }
 
-  const handleSubmitLoginForm = (data: LoginFormData) => {
-    console.log('Submit login form', data)
-    // Aquí puedes agregar la lógica de autenticación
-  }
+  // Extraer mensaje de error de la mutación usando hook reutilizable
+  const errorMessage = useErrorMessage(loginMutation.error)
 
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
-          <LoginForm
-            onGoogleLogin={onGoogleLogin}
-            onSubmit={handleSubmitLoginForm}
-          />
+          <LoginForm onSubmit={handleSubmitLoginForm} error={errorMessage} />
           <div className="relative hidden bg-muted md:block">
             <img
               src={PlaceholderImg}

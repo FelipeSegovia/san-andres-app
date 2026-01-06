@@ -6,7 +6,8 @@ import { Input } from '../ui/input'
 import { Label } from '../ui/label'
 
 interface RegisterFormData {
-  name: string
+  firstName: string
+  lastName: string
   email: string
   password: string
   confirmPassword: string
@@ -30,7 +31,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
 
   return (
     <form className="p-6 md:p-8" onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col">
         <div className="flex flex-col items-center text-center">
           <h1 className="text-2xl font-bold">Crea una cuenta</h1>
           <p className="text-balance text-muted-foreground">Registrate</p>
@@ -40,23 +41,51 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
             {error}
           </div>
         )}
-        <div className="grid gap-2">
-          <Label htmlFor="name">Nombre completo</Label>
-          <Input
-            id="name"
-            type="text"
-            placeholder="John Doe"
-            {...register('name', {
-              required: 'El nombre es requerido',
-              minLength: {
-                value: 2,
-                message: 'El nombre debe tener al menos 2 caracteres',
-              },
-            })}
-          />
-          {errors.name && (
-            <p className="text-sm text-red-500">{errors.name.message}</p>
-          )}
+        <div className="flex flex-row gap-2 mt-6">
+          <div className="grid gap-2">
+            <Label htmlFor="firstName">Nombre</Label>
+            <Input
+              id="firstName"
+              type="text"
+              placeholder="John"
+              {...register('firstName', {
+                required: 'El nombre es requerido',
+                minLength: {
+                  value: 2,
+                  message: 'El nombre debe tener al menos 2 caracteres',
+                },
+              })}
+            />
+            <div className="min-h-[20px]">
+              {errors.firstName && (
+                <p className="text-sm text-red-500">
+                  {errors.firstName.message}
+                </p>
+              )}
+            </div>
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="lastName">Apellido</Label>
+            <Input
+              id="lastName"
+              type="text"
+              placeholder="Doe"
+              {...register('lastName', {
+                required: 'El apellido es requerido',
+                minLength: {
+                  value: 2,
+                  message: 'El apellido debe tener al menos 2 caracteres',
+                },
+              })}
+            />
+            <div className="min-h-[20px]">
+              {errors.lastName && (
+                <p className="text-sm text-red-500">
+                  {errors.lastName.message}
+                </p>
+              )}
+            </div>
+          </div>
         </div>
         <div className="grid gap-2">
           <Label htmlFor="email">Correo electrónico</Label>
@@ -72,9 +101,11 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
               },
             })}
           />
-          {errors.email && (
-            <p className="text-sm text-red-500">{errors.email.message}</p>
-          )}
+          <div className="min-h-[20px]">
+            {errors.email && (
+              <p className="text-sm text-red-500">{errors.email.message}</p>
+            )}
+          </div>
         </div>
         <div className="grid gap-2">
           <div className="flex items-center">
@@ -91,11 +122,13 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
               },
             })}
           />
-          {errors.password && (
-            <p className="text-sm text-red-500">{errors.password.message}</p>
-          )}
+          <div className="min-h-[20px]">
+            {errors.password && (
+              <p className="text-sm text-red-500">{errors.password.message}</p>
+            )}
+          </div>
         </div>
-        <div className="grid gap-2">
+        <div className="grid gap-2 mb-6">
           <Label htmlFor="confirmPassword">Repetir contraseña</Label>
           <Input
             id="confirmPassword"
@@ -106,11 +139,13 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
                 value === watch('password') || 'Las contraseñas no coinciden',
             })}
           />
-          {errors.confirmPassword && (
-            <p className="text-sm text-red-500">
-              {errors.confirmPassword.message}
-            </p>
-          )}
+          <div className="min-h-[20px]">
+            {errors.confirmPassword && (
+              <p className="text-sm text-red-500">
+                {errors.confirmPassword.message}
+              </p>
+            )}
+          </div>
         </div>
         <Button type="submit" className="w-full" disabled={isSubmitting}>
           {isSubmitting ? 'Registrando...' : 'Registrarse'}

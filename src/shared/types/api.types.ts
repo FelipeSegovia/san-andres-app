@@ -1,37 +1,60 @@
 export interface ApiError {
-  message: string;
-  errors?: Record<string, string[]>;
-  statusCode?: number;
+  message: string
+  errors?: Record<string, string[]>
+  statusCode?: number
 }
 
 // Tipos para paginación
 export interface PaginatedResponse<T> {
-  data: T[];
+  data: T[]
   pagination: {
-    page: number;
-    limit: number;
-    total: number;
-    totalPages: number;
-  };
+    page: number
+    limit: number
+    total: number
+    totalPages: number
+  }
 }
 
 // Tipos para autenticación
 export interface LoginRequest {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
 export interface RegisterRequest {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
+  firstName: string
+  lastName: string
+  email: string
+  password: string
 }
 
 export interface AuthResponse {
-  accessToken: string;
+  accessToken: string
 }
 
 export interface AuthValidateTokenResponse {
-  validateToken: boolean;
+  validateToken: boolean
 }
+
+// Tipos para usuario
+export interface User {
+  id: string
+  email: string
+  firstName: string
+  lastName: string
+  isActive: boolean
+  roleId: string | null
+  role?: {
+    id: string
+    name: string
+    description: string
+  }
+  createdAt: string
+  updatedAt: string
+}
+
+export interface EmailUserRequest {
+  email: string
+}
+
+export interface GetUserResponse extends User {}

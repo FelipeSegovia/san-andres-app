@@ -15,7 +15,7 @@ import { DashboardRedirect } from './DashboardRedirect'
 import { useValidateToken } from '@/features/auth/hooks'
 
 const AppRoutes = () => {
-  const { isLoading, data } = useValidateToken()
+  const { isLoading, isSuccess } = useValidateToken()
 
   if (isLoading) {
     return (
@@ -42,7 +42,7 @@ const AppRoutes = () => {
                 </div>
               }
             >
-              <PrivateRoute isAuthenticated={!!data?.validateToken}>
+              <PrivateRoute isAuthenticated={isSuccess}>
                 <DashboardLayout />
               </PrivateRoute>
             </Suspense>

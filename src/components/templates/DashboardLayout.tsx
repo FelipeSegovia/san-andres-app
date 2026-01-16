@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import { Link, Outlet } from 'react-router-dom'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,7 +7,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu'
 import {
   BarChart3,
   LayoutDashboard,
@@ -15,18 +15,24 @@ import {
   User,
   Users,
   X,
-} from "lucide-react";
-import { Button } from "../ui/button";
+} from 'lucide-react'
+import { Button } from '../ui/button'
+import { useAuthStore } from '@/stores'
 
 const navigation = [
-  { name: "Dashboard", href: "/", icon: LayoutDashboard },
-  { name: "Analytics", href: "#", icon: BarChart3 },
-  { name: "Users", href: "#", icon: Users },
-  { name: "Settings", href: "#", icon: Settings },
-];
+  { name: 'Dashboard', href: '/', icon: LayoutDashboard },
+  { name: 'Analytics', href: '#', icon: BarChart3 },
+  { name: 'Users', href: '#', icon: Users },
+  { name: 'Settings', href: '#', icon: Settings },
+]
 
 export const DashboardLayout = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const { user } = useAuthStore()
+
+  useEffect(() => {
+    console.log('User in DashboardLayout:', user)
+  }, [user])
 
   return (
     <div className="min-h-screen">
@@ -40,7 +46,7 @@ export const DashboardLayout = () => {
       {/* Desktop sidebar */}
       <aside
         className={`fixed inset-y-0 left-0 z-50 w-64 bg-sidebar border-r border-sidebar-border transition-transform duration-200 ease-in-out lg:translate-x-0 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="flex h-full flex-col">
@@ -65,7 +71,7 @@ export const DashboardLayout = () => {
           {/* Navigation */}
           <nav className="flex-1 space-y-1 p-4">
             {navigation.map((item) => {
-              const Icon = item.icon;
+              const Icon = item.icon
               return (
                 <Link
                   key={item.name}
@@ -76,7 +82,7 @@ export const DashboardLayout = () => {
                   <Icon className="h-5 w-5" />
                   <span className="text-sm font-medium">{item.name}</span>
                 </Link>
-              );
+              )
             })}
           </nav>
 
@@ -114,5 +120,5 @@ export const DashboardLayout = () => {
       <h1>DashboardLayout</h1>
       <Outlet />
     </div>
-  );
-};
+  )
+}
